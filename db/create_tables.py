@@ -47,7 +47,7 @@ def createTable ():
     """
 
     # Payment Method Table
-    PaymentMethodTable = """
+    paymentMethodTable = """
         CREATE TABLE IF NOT EXISTS PaymentMethod (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         method TEXT NOT NULL
@@ -55,7 +55,7 @@ def createTable ():
     """
 
     # Donation Table
-    DonationTable = """
+    donationTable = """
         CREATE TABLE IF NOT EXISTS Donation (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         amount_donated REAL NOT NULL,
@@ -75,8 +75,8 @@ def createTable ():
     cursor.execute(donorTable)
     cursor.execute(volunteerTable)
     cursor.execute(eventTable)
-    cursor.execute(PaymentMethodTable)
-    cursor.execute(DonationTable)
+    cursor.execute(paymentMethodTable)
+    cursor.execute(donationTable)
 
     connection.commit()
     connection.close()
