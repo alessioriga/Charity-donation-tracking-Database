@@ -68,3 +68,67 @@ def deleteEvent ():
         print("❌ The Event hasn't been deleted.")
         time.sleep(2)
 
+def insertNewDonor ():
+
+    connection = db.connect("Alessio_charity_donations.db.db")
+
+    first_name = input("Insert the first name: ")
+    surname = input("Insert the surname: ")
+    company = input("Insert the company: ")
+    postcode = input("Insert the postcode: ")
+    address = address_input("Insert the address")
+    phone_number = number_input("Insert the phone number")
+    email = email_input("Insert the email")
+
+    connection.execute("INSERT INTO Donor (first_name, surname, company, postcode, address, phone_number, email) VALUES (?, ?, ?, ?, ?, ?, ?)", (first_name, surname, company, postcode, address, phone_number, email))
+    connection.commit()
+    connection.close()
+
+    print("✅ Donor added.")
+    time.sleep(2)
+
+def viewDonors ():
+
+    connection = db.connect("Alessio_charity_donations.db")
+
+    print("Donors:\n")
+    for row in connection.execute("SELECT * FROM Donor"):
+        print(row)
+
+    connection.close()
+    time.sleep(2)
+
+def updateDonors ():
+    
+    connection = db.connect("Alessio_charity_donations.db")
+
+    print("Insert a Donor ID to update.\n")
+    donor_id = donorIdInput(connection)
+    updated_email = email_input("Insert the new email")
+
+    connection.execute("UPDATE Donor SET email = ? WHERE id = ?", (updated_email, donor_id))
+
+    connection.commit()
+    connection.close()
+
+    print("✅ Donor updated.")
+    time.sleep(2)
+
+def deleteDonor ():
+    connection = db.connect("Alessio_charity_donations.db")
+    
+    cursor = connection.cursor()
+
+    print("Insert a Donor ID to delete.\n")
+    donor_id = donorIdInput(connection)
+    if confirmation_input("Are you sure you want to delete Donor ID " + donor_id + "?"):
+        if searchDonationByDonorId(connection, donor_id):
+            print("❗ This donor ID is being used by a donation.")
+        else:
+            cursor.execute("DELETE FROM Donor WHERE id = ?", (donor_id))
+            connection.commit()
+            print("✅ Donor: " + donor_id + " has been deleted.")
+        time.sleep(2)
+    else:
+        print("❌ The Donor hasn't been deleted.")
+        time.sleep(2)
