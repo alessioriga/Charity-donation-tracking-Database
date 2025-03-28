@@ -18,7 +18,7 @@ def createTable ():
         email TEXT
         )
     """
-    
+
     # Volunteer Table
     volunteerTable = """
         CREATE TABLE IF NOT EXISTS Volunteer (
