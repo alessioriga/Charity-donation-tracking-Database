@@ -17,8 +17,6 @@ def donorIdInput (connection):
         else:
             print("❌ ID not found. Try again.")
 
-    
-
 def eventIdInput (connection):
 
     print("ID, Event")
