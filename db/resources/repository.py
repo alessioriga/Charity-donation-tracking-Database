@@ -330,3 +330,68 @@ def searchDonationByEvent ():
         time.sleep(2)
     
     connection.close()
+
+def insertNewVolunteer ():
+
+    connection = db.connect("Alessio_charity_donations.db")
+
+    first_name = input_mandatory("Insert the first name: ")
+    surname = input_mandatory("Insert the surname: ")
+    postcode = input_mandatory("Insert the postcode: ")
+    address = address_input("Insert the address")
+    phone_number = number_input("Insert the phone number")
+    email = email_input("Insert the email: ")
+    event_id = eventIdInput(connection)
+
+    connection.execute("INSERT INTO Volunteer (first_name, surname, postcode, address, phone_number, email, event_id) VALUES (?, ?, ?, ?, ?, ?, ?)", (first_name, surname, postcode, address, phone_number, email, event_id))
+    connection.commit()
+    connection.close()
+
+    print("✅ Volunteer added.")
+    time.sleep(2)
+
+def viewVolunteers ():
+
+    connection = db.connect("Alessio_charity_donations.db")
+
+    print("Volunteers:\n")
+    for row in connection.execute("SELECT * FROM Volunteer"):
+        print(row)
+        time.sleep(2)
+
+    connection.close()
+
+def updateVolunteers ():
+
+    connection = db.connect("Alessio_charity_donations.db")
+
+    print("Insert a Volunteer ID to update.\n")
+    volunteer_id = volunteerIdInput (connection)
+    updated_phone_number = number_input("Insert the new phone number")
+
+    connection.execute("UPDATE Volunteer SET phone_number = ? WHERE id = ?", (updated_phone_number, volunteer_id))
+
+    connection.commit()
+    connection.close()
+
+    print("✅ Volunteer updated.")
+    time.sleep(2)
+
+def deleteVolunteer ():
+    connection = db.connect("Alessio_charity_donations.db")
+    
+    cursor = connection.cursor()
+
+    print("Insert a Volunteer ID to delete.\n")
+    volunteer_id = volunteerIdInput(connection)
+    if confirmation_input("Are you sure you want to delete Volunteer ID " + volunteer_id + "?"):
+        if searchDonationByVolunteerId(connection, volunteer_id):
+            print("❗ This volunteer ID is being used by a donation.")
+        else:
+            cursor.execute("DELETE FROM Volunteer WHERE id = ?", (volunteer_id))
+            connection.commit()
+            print("✅ Volunteer: " + volunteer_id + " has been deleted.")
+        time.sleep(2)
+    else:
+        print("❌ The Volunteer hasn't been deleted.")
+        time.sleep(2)
