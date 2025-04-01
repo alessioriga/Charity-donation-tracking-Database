@@ -255,3 +255,78 @@ def deleteDonation ():
         print("❌ The Donation hasn't been deleted.")
     time.sleep(2)
 
+def searchDonationByDonor ():
+
+    connection = db.connect("Alessio_charity_donations.db")
+    cursor = connection.cursor()
+
+    print("Insert the Donor ID to view past donations.\n")
+    donor_id = donorIdInput(connection)
+
+    cursor.execute("SELECT id, amount_donated, date, notes, event_id, volunteer_id, payment_method_id FROM Donation WHERE donor_id = ?", (donor_id,))
+    results = cursor.fetchall()
+
+    if results:
+        print("Donations for Donor ID " + donor_id + ":")
+        for row in results:
+            print(f"Donation ID: {row[0]}, Amount: £{row[1]:.2f}, Date: {row[2]}")
+            print(f"    Event ID: {row[4]}, Volunteer ID: {row[5]}, Payment Method ID: {row[6]}")
+            if row[3]:
+                print(f"    Notes: {row[3]}")
+        time.sleep(2)
+    else:
+        print("❌ No donations found for this donor.")
+        time.sleep(2)
+    
+
+    connection.close()
+
+def searchDonationByVolunteer ():
+
+    connection = db.connect("Alessio_charity_donations.db")
+    cursor = connection.cursor()
+
+    print("Insert the Volunteer ID to view past donations.\n")
+    volunteer_id = volunteerIdInput(connection)
+
+    cursor.execute("SELECT id, amount_donated, date, notes, donor_id, event_id, payment_method_id FROM Donation WHERE volunteer_id = ?", (volunteer_id,))
+    results = cursor.fetchall()
+
+    if results:
+        print("Donations for  ID " + volunteer_id + ":")
+        for row in results:
+            print(f"Donation ID: {row[0]}, Amount: £{row[1]:.2f}, Date: {row[2]}")
+            print(f"    Donor ID: {row[4]}, Event ID: {row[5]}, Payment Method ID: {row[6]}")
+            if row[3]:
+                print(f"    Notes: {row[3]}")
+        time.sleep(2)
+    else:
+        print("❌ No donations found for this volunteer.")
+        time.sleep(2)
+    
+    connection.close()
+
+def searchDonationByEvent ():
+
+    connection = db.connect("Alessio_charity_donations.db")
+    cursor = connection.cursor()
+
+    print("Insert the Event ID to view past donations.\n")
+    event_id = eventIdInput(connection)
+
+    cursor.execute("SELECT id, amount_donated, date, notes, donor_id, volunteer_id, payment_method_id FROM Donation WHERE event_id = ?", (event_id,))
+    results = cursor.fetchall()
+
+    if results:
+        print("Donations for  ID " + event_id + ":")
+        for row in results:
+            print(f"Donation ID: {row[0]}, Amount: £{row[1]:.2f}, Date: {row[2]}")
+            print(f"    Donor ID: {row[4]}, Volunteer ID: {row[5]}, Payment Method ID: {row[6]}")
+            if row[3]:
+                print(f"    Notes: {row[3]}")
+        time.sleep(2)
+    else:
+        print("❌ No donations found for this event.")
+        time.sleep(2)
+    
+    connection.close()
