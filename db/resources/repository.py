@@ -191,3 +191,67 @@ def deletePaymentMethod ():
     else:
         print("❌ The Payment Method hasn't been deleted.")
         time.sleep(2)
+
+def insertNewDonation ():
+
+    connection = db.connect("Alessio_charity_donations.db")
+    
+    amount_donated = amount_input_mandatory("Please enter the amount: £")
+    
+    date = datetime.now().strftime("%d-%m-%Y")
+    notes = input("Insert a note: ")
+    donor_id = donorIdInput(connection)
+    event_id = eventIdInput(connection)
+    volunteer_id = volunteerIdInput(connection)
+    payment_method_id = paymentMethodIdInput(connection)
+
+    connection.execute("INSERT INTO Donation (amount_donated, date, notes, donor_id, event_id, volunteer_id, payment_method_id) VALUES (?, ?, ?, ?, ?, ?, ?)", (amount_donated, date, notes, donor_id, event_id, volunteer_id, payment_method_id))
+    connection.commit()
+    connection.close()
+
+    print("✅ Donation added.")
+    print(f"Thank you!!! You donated £{amount_donated:.2f}")
+    time.sleep(2)
+
+def viewDonations ():
+
+    connection = db.connect("Alessio_charity_donations.db")
+
+    print("Donations:\n")
+    for row in connection.execute("SELECT * FROM Donation"):
+        print(row)
+
+    connection.close()
+    time.sleep(2)
+
+def updateDonations ():
+
+    connection = db.connect("Alessio_charity_donations.db")
+
+    print("Insert a Donation ID to update.\n")
+    donation_id = donationIdInput (connection)
+    updated_amount = amount_input_mandatory("Please enter the new amount: £")
+
+    connection.execute("UPDATE Donation SET amount_donated = ? WHERE id = ?", (updated_amount, donation_id))
+
+    connection.commit()
+    connection.close()
+
+    print("✅ Donation updated.")
+    print(f"Thank you!!! You donated £{updated_amount:.2f}")
+    time.sleep(2)
+
+def deleteDonation ():
+    connection = db.connect("Alessio_charity_donations.db")
+    cursor = connection.cursor()
+
+    print("Insert a Donation ID to delete.\n")
+    donation_id = donationIdInput(connection)
+    if confirmation_input("Are you sure you want to delete Donation ID " + donation_id + "?"):
+        cursor.execute("DELETE FROM Donation WHERE id = ?", (donation_id))
+        connection.commit()
+        print("✅ Donation: " + donation_id + " has been deleted.")
+    else:
+        print("❌ The Donation hasn't been deleted.")
+    time.sleep(2)
+
