@@ -66,7 +66,7 @@ def main_menu():
             print("Invalid option.")
 
 if __name__ == "__main__":
-    main_menu()
     createTable()
     insertValue()
+    main_menu()
     
