@@ -11,7 +11,7 @@ def insertValue ():
     addDonor = """
         INSERT INTO Donor (first_name, surname, company, postcode, address, phone_number, email)
         VALUES
-        ('Alessio', 'Rigamonti', 'SaturnTech', 'M47GR', '71 Guide Post Road, Salford', 3458642950, 'ale.rigamonti@saturntech.com'),
+        ('Alessio', 'Rigamonti', 'SaturnTech', 'M47GR', '71 Guide Post Road, Salford', 3458642950, 'alessio.rigamonti@saturntech.com'),
         ('Karima', 'Chakhssi', 'Tesla', 'M58YR', '71 Dalton Street, Manchester', 3459759476, 'karima.chakhssi@tesla.com'),
         ('Javi', 'Clavijo', 'NexusTech', '14013', '4 Calle Libertador, Sivilla', 3457392134, 'javi.clavijo@nexustech.com'),
         ('Inma', 'Castilla', 'Ubisoft', '9008', '19 Fredrik Langes, Tromsø', 3458600044, 'inma.castilla@ubisoft.com')
