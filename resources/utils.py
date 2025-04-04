@@ -1,5 +1,6 @@
-from datetime import datetime
 import re
+
+from datetime import datetime
 
 def input_mandatory(msg):
     while True:
