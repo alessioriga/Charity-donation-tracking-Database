@@ -1,9 +1,10 @@
 import sqlite3 as db
-from db.create_tables import *
 import time
 
-def insertValue ():
-    connection = db.connect("Alessio_charity_donations.db")
+from db.create_tables import *
+
+def insertValue():
+    connection =db.connect("Alessio_charity_donations.db")
     cursor = connection.cursor()
     cursor.execute("PRAGMA foreign_keys= ON")
 
