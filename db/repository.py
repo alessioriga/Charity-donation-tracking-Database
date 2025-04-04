@@ -1,8 +1,9 @@
 import sqlite3 as db
+import time
+
 from resources.utils import *
 from db.resources.dbUtils import *
 from datetime import datetime
-import time
 
 def insertNewEvent ():
 
@@ -48,6 +49,7 @@ def updateEvents ():
     time.sleep(2)
 
 def deleteEvent ():
+
     connection = db.connect("Alessio_charity_donations.db")
     
     cursor = connection.cursor()
@@ -115,6 +117,7 @@ def updateDonors ():
     time.sleep(2)
 
 def deleteDonor ():
+
     connection = db.connect("Alessio_charity_donations.db")
     
     cursor = connection.cursor()
@@ -174,6 +177,7 @@ def updatePaymentMethods ():
     time.sleep(2)
 
 def deletePaymentMethod ():
+
     connection = db.connect("Alessio_charity_donations.db")
     
     cursor = connection.cursor()
@@ -242,7 +246,9 @@ def updateDonations ():
     time.sleep(2)
 
 def deleteDonation ():
+
     connection = db.connect("Alessio_charity_donations.db")
+
     cursor = connection.cursor()
 
     print("Insert a Donation ID to delete.\n")
@@ -258,6 +264,7 @@ def deleteDonation ():
 def searchDonationByDonor ():
 
     connection = db.connect("Alessio_charity_donations.db")
+
     cursor = connection.cursor()
 
     print("Insert the Donor ID to view past donations.\n")
@@ -284,6 +291,7 @@ def searchDonationByDonor ():
 def searchDonationByVolunteer ():
 
     connection = db.connect("Alessio_charity_donations.db")
+
     cursor = connection.cursor()
 
     print("Insert the Volunteer ID to view past donations.\n")
@@ -309,6 +317,7 @@ def searchDonationByVolunteer ():
 def searchDonationByEvent ():
 
     connection = db.connect("Alessio_charity_donations.db")
+
     cursor = connection.cursor()
 
     print("Insert the Event ID to view past donations.\n")
@@ -378,6 +387,7 @@ def updateVolunteers ():
     time.sleep(2)
 
 def deleteVolunteer ():
+    
     connection = db.connect("Alessio_charity_donations.db")
     
     cursor = connection.cursor()
