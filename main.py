@@ -1,6 +1,10 @@
+import os
+
 from db.create_tables import *
 from db.insert_values import *
 from db.repository import *
+
+DATABASE_NAME = "Alessio_charity_donations.db"
 
 def main_menu():
     while True:
@@ -28,9 +32,9 @@ def main_menu():
         print("21. View Payment Methods")
         print("22. Update Payment Method")
         print("23. Delete Payment Method")
-
         print("0. Exit")
         choice = input("Choose an option: ")
+        print("")
 
         actions = {
             "1": insertNewDonor,
@@ -65,8 +69,15 @@ def main_menu():
         else:
             print("Invalid option.")
 
-if __name__ == "__main__":
-    createTable()
-    insertValue()
+def main():
+    if not os.path.exists(DATABASE_NAME):
+        createTable()
+        insertValue()
+
     main_menu()
-    
+
+# If the main.py file is imported into other modules, 
+# it will not be executed because the __name__ will not be __main__. 
+# Instead, it will have the name of the module where it was imported.
+if __name__ == "__main__":
+    main()
