@@ -4,7 +4,7 @@ def createTable ():
     connection = db.connect("Alessio_charity_donations.db")
     cursor = connection.cursor()
     cursor.execute("PRAGMA foreign_keys= ON")
-    
+
     # Donor Table
     donorTable = """
         CREATE TABLE IF NOT EXISTS Donor (
@@ -18,7 +18,7 @@ def createTable ():
         email TEXT
         )
     """
-
+    
     # Volunteer Table
     volunteerTable = """
         CREATE TABLE IF NOT EXISTS Volunteer (
