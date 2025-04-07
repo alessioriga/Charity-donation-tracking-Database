@@ -28,7 +28,7 @@ def insertValue():
         ('Macmillan Cancer Support', '27-07-2025', '27-07-2025', 'Belfast', 6000.00)
     """
 
-    #This command adds values to the Paynebt Method table such as (method)
+    #This command adds values to the Payment Method table such as (method)
     addPaymentMethod = """
         INSERT INTO PaymentMethod (method)
         VALUES
