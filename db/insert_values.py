@@ -12,8 +12,8 @@ def insertValue():
     addDonor = """
         INSERT INTO Donor (first_name, surname, company, postcode, address, phone_number, email)
         VALUES
-        ('Alessio', 'Rigamonti', 'SaturnTech', 'M47GR', '71 Guide Post Road, Salford', 3458642950, 'alessio.rigamonti@saturntech.com'),
-        ('Karima', 'Chakhssi', 'Tesla', 'M58YR', '71 Dalton Street, Manchester', 3459759476, 'karima.chakhssi@tesla.com'),
+        ('Alessio', 'Rigamonti', 'SaturnTech', 'M47GR', '71 Guide Post Road, Salford', 0758642950, 'alessio.rigamonti@saturntech.com'),
+        ('Karima', 'Chakhssi', 'Tesla', 'M58YR', '71 Dalton Street, Manchester', 0759759476, 'karima.chakhssi@tesla.com'),
         ('Javi', 'Clavijo', 'NexusTech', '14013', '4 Calle Libertador, Sivilla', 3457392134, 'javi.clavijo@nexustech.com'),
         ('Inma', 'Castilla', 'Ubisoft', '9008', '19 Fredrik Langes, Tromsø', 3458600044, 'inma.castilla@ubisoft.com')
     """
@@ -41,10 +41,10 @@ def insertValue():
     addVolunteer = """
         INSERT INTO Volunteer (first_name, surname, postcode, address, phone_number, email, event_id)
         VALUES
-        ('Patricia', 'Shannon', 'HG12DR', '3  Coppice Gate, Harrogate', 5739651739, 'patricia.shannon@email.com', 1),
-        ('Lyle', 'Todd', 'BN31FA', '99 Western Road, Hove', 4318403563, 'lyle.todd@email.com', 4),
-        ('Jere', 'Schwartz', 'DD21AT', '209 Perth Road, Dundee', 8392042300, 'jere.schwartz@email.com', 2),
-        ('Danielle', 'Lester', 'NE1TL', '28 Jasmin Ave, Newcastle', 7380033658, 'danielle.lester@email.com', 3)
+        ('Patricia', 'Shannon', 'HG12DR', '3  Coppice Gate, Harrogate', 0799431870, 'patricia.shannon@email.com', 1),
+        ('Lyle', 'Todd', 'BN31FA', '99 Western Road, Hove', 0752900762, 'lyle.todd@email.com', 4),
+        ('Jere', 'Schwartz', 'DD21AT', '209 Perth Road, Dundee', 0718375699, 'jere.schwartz@email.com', 2),
+        ('Danielle', 'Lester', 'NE1TL', '28 Jasmine Ave, Newcastle', 0713958559, 'danielle.lester@email.com', 3)
     """
 
     #This command adds values to the Donation table such as (amount_donated, date, notes, donor_id, event_id, volunteer_id, payment_method_id)
