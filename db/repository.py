@@ -72,7 +72,7 @@ def deleteEvent ():
 
 def insertNewDonor ():
 
-    connection = db.connect("Alessio_charity_donations.db.db")
+    connection = db.connect("Alessio_charity_donations.db")
 
     first_name = input("Insert the first name: ")
     surname = input("Insert the surname: ")
