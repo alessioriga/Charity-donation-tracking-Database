@@ -146,7 +146,7 @@ def insertNewPaymentMethod ():
     connection.commit()
     connection.close()
 
-    print("✅ Pyment Method added.")
+    print("✅ Payment Method added.")
     time.sleep(2)
 
 def viewPaymentMethods ():
