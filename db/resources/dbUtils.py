@@ -86,37 +86,9 @@ def donationIdInput (connection):
         else:
             print("❌ ID not found. Try again.")
 
-def searchDonationByPaymentMethodId (connection, paymentMethodId):
+def searchById(connection, table, id_field, id): 
 
-    cursor = connection.execute("SELECT * FROM Donation WHERE payment_method_id = ? ", (paymentMethodId))
-
-    # This method returns true if fetchone returns a row and false if not. So basically if there is data the function returns True and False otherwise.
-    return cursor.fetchone() != None
-
-def searchDonationByEventId(connection, eventId):
-
-    cursor = connection.execute("SELECT * FROM Donation WHERE event_id = ? ", (eventId))
-
-    # This method returns true if fetchone returns a row and false if not. So basically if there is data the function returns True and False otherwise.
-    return cursor.fetchone() != None
-
-def searchVolunteerByEventId(connection, eventId):
-
-    cursor = connection.execute("SELECT * FROM Volunteer WHERE event_id = ? ", (eventId))
-
-    # This method returns true if fetchone returns a row and false if not. So basically if there is data the function returns True and False otherwise.
-    return cursor.fetchone() != None
-
-def searchDonationByDonorId (connection, donorId):
-
-    cursor = connection.execute("SELECT * FROM Donation WHERE donor_id = ? ", (donorId))
-
-    # This method returns true if fetchone returns a row and false if not. So basically if there is data the function returns True and False otherwise.
-    return cursor.fetchone() != None
-
-def searchDonationByVolunteerId (connection, volunteerId):
-
-    cursor = connection.execute("SELECT * FROM Donation WHERE volunteer_id = ? ", (volunteerId))
+    cursor = connection.execute(f"SELECT * FROM {table} WHERE {id_field} = ? ", (id)) 
 
     # This method returns true if fetchone returns a row and false if not. So basically if there is data the function returns True and False otherwise.
     return cursor.fetchone() != None

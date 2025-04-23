@@ -1,5 +1,4 @@
 import sqlite3 as db
-import time
 
 from db.create_tables import *
 
@@ -66,4 +65,3 @@ def insertValue():
     connection.commit()
     connection.close()
     print("✅ Data added successfully.")
-    time.sleep(2)

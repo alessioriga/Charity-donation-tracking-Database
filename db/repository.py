@@ -1,5 +1,4 @@
 import sqlite3 as db
-import time
 
 from resources.utils import *
 from db.resources.dbUtils import *
@@ -20,7 +19,6 @@ def insertNewEvent ():
     connection.close()
         
     print("✅ Event added.")
-    time.sleep(2)
 
 def viewEvents ():
 
@@ -31,7 +29,6 @@ def viewEvents ():
         print(row)
 
     connection.close()
-    time.sleep(2)
 
 def updateEvents ():
 
@@ -46,7 +43,6 @@ def updateEvents ():
     connection.close()
 
     print("✅ Event updated.")
-    time.sleep(2)
 
 def deleteEvent ():
 
@@ -57,18 +53,18 @@ def deleteEvent ():
     print("Insert a Event ID to delete.\n")
     eventId = eventIdInput(connection)
     if confirmation_input("Are you sure you want to delete Event ID " + eventId + "?"):
-        if searchDonationByEventId(connection, eventId):
+        
+        if searchById(connection, "Donation", "event_id", eventId):
             print("❗ This event ID is being used by a donation.")
-        elif searchVolunteerByEventId(connection, eventId):
+        
+        elif searchById(connection, "Volunteer", "event_id", eventId):
             print("❗ This event ID is being used by a volunteer.")
         else:
             cursor.execute("DELETE FROM Event WHERE id = ?", (eventId))
             connection.commit()
             print("✅ Event: " + eventId + " has been deleted.")
-        time.sleep(2)
     else:
         print("❌ The Event hasn't been deleted.")
-        time.sleep(2)
 
 def insertNewDonor ():
 
@@ -87,7 +83,6 @@ def insertNewDonor ():
     connection.close()
 
     print("✅ Donor added.")
-    time.sleep(2)
 
 def viewDonors ():
 
@@ -98,7 +93,6 @@ def viewDonors ():
         print(row)
 
     connection.close()
-    time.sleep(2)
 
 def updateDonors ():
     
@@ -114,7 +108,6 @@ def updateDonors ():
     connection.close()
 
     print("✅ Donor updated.")
-    time.sleep(2)
 
 def deleteDonor ():
 
@@ -125,16 +118,15 @@ def deleteDonor ():
     print("Insert a Donor ID to delete.\n")
     donor_id = donorIdInput(connection)
     if confirmation_input("Are you sure you want to delete Donor ID " + donor_id + "?"):
-        if searchDonationByDonorId(connection, donor_id):
+        
+        if searchById(connection, "Donation", "donor_id", donor_id):
             print("❗ This donor ID is being used by a donation.")
         else:
             cursor.execute("DELETE FROM Donor WHERE id = ?", (donor_id))
             connection.commit()
             print("✅ Donor: " + donor_id + " has been deleted.")
-        time.sleep(2)
     else:
         print("❌ The Donor hasn't been deleted.")
-        time.sleep(2)
 
 def insertNewPaymentMethod ():
 
@@ -147,7 +139,6 @@ def insertNewPaymentMethod ():
     connection.close()
 
     print("✅ Payment Method added.")
-    time.sleep(2)
 
 def viewPaymentMethods ():
 
@@ -158,7 +149,6 @@ def viewPaymentMethods ():
         print(row)
 
     connection.close()
-    time.sleep(2)
 
 def updatePaymentMethods ():
 
@@ -174,7 +164,6 @@ def updatePaymentMethods ():
     connection.close()
 
     print("✅ Payment Method updated.")
-    time.sleep(2)
 
 def deletePaymentMethod ():
 
@@ -185,16 +174,15 @@ def deletePaymentMethod ():
     print("Insert a Payment Method ID to delete.\n")
     paymentMethod_id = paymentMethodIdInput(connection)
     if confirmation_input("Are you sure you want to delete Payment method ID " + paymentMethod_id + "?"):
-        if searchDonationByPaymentMethodId(connection, paymentMethod_id):
+        
+        if searchById(connection, "Donation", "payment_method_id", paymentMethod_id):
             print("❗ This payment method ID is being used by a donation.")
         else:
             cursor.execute("DELETE FROM PaymentMethod WHERE id = ?", (paymentMethod_id))
             connection.commit()
             print("✅ Payment Method: " + paymentMethod_id + " has been deleted.")
-        time.sleep(2)
     else:
         print("❌ The Payment Method hasn't been deleted.")
-        time.sleep(2)
 
 def insertNewDonation ():
 
@@ -215,7 +203,6 @@ def insertNewDonation ():
 
     print("✅ Donation added.")
     print(f"Thank you!!! You donated £{amount_donated:.2f}")
-    time.sleep(2)
 
 def viewDonations ():
 
@@ -226,7 +213,6 @@ def viewDonations ():
         print(row)
 
     connection.close()
-    time.sleep(2)
 
 def updateDonations ():
 
@@ -243,7 +229,6 @@ def updateDonations ():
 
     print("✅ Donation updated.")
     print(f"Thank you!!! You donated £{updated_amount:.2f}")
-    time.sleep(2)
 
 def deleteDonation ():
 
@@ -259,7 +244,6 @@ def deleteDonation ():
         print("✅ Donation: " + donation_id + " has been deleted.")
     else:
         print("❌ The Donation hasn't been deleted.")
-    time.sleep(2)
 
 def searchDonationByDonor ():
 
@@ -280,12 +264,9 @@ def searchDonationByDonor ():
             print(f"    Event ID: {row[4]}, Volunteer ID: {row[5]}, Payment Method ID: {row[6]}")
             if row[3]:
                 print(f"    Notes: {row[3]}")
-        time.sleep(2)
     else:
         print("❌ No donations found for this donor.")
-        time.sleep(2)
     
-
     connection.close()
 
 def searchDonationByVolunteer ():
@@ -307,10 +288,8 @@ def searchDonationByVolunteer ():
             print(f"    Donor ID: {row[4]}, Event ID: {row[5]}, Payment Method ID: {row[6]}")
             if row[3]:
                 print(f"    Notes: {row[3]}")
-        time.sleep(2)
     else:
         print("❌ No donations found for this volunteer.")
-        time.sleep(2)
     
     connection.close()
 
@@ -333,10 +312,8 @@ def searchDonationByEvent ():
             print(f"    Donor ID: {row[4]}, Volunteer ID: {row[5]}, Payment Method ID: {row[6]}")
             if row[3]:
                 print(f"    Notes: {row[3]}")
-        time.sleep(2)
     else:
         print("❌ No donations found for this event.")
-        time.sleep(2)
     
     connection.close()
 
@@ -357,7 +334,6 @@ def insertNewVolunteer ():
     connection.close()
 
     print("✅ Volunteer added.")
-    time.sleep(2)
 
 def viewVolunteers ():
 
@@ -366,7 +342,6 @@ def viewVolunteers ():
     print("Volunteers:\n")
     for row in connection.execute("SELECT * FROM Volunteer"):
         print(row)
-        time.sleep(2)
 
     connection.close()
 
@@ -384,7 +359,6 @@ def updateVolunteers ():
     connection.close()
 
     print("✅ Volunteer updated.")
-    time.sleep(2)
 
 def deleteVolunteer ():
     
@@ -395,13 +369,12 @@ def deleteVolunteer ():
     print("Insert a Volunteer ID to delete.\n")
     volunteer_id = volunteerIdInput(connection)
     if confirmation_input("Are you sure you want to delete Volunteer ID " + volunteer_id + "?"):
-        if searchDonationByVolunteerId(connection, volunteer_id):
+
+        if searchById(connection, "Donation", "volunteer_id", volunteer_id):
             print("❗ This volunteer ID is being used by a donation.")
         else:
             cursor.execute("DELETE FROM Volunteer WHERE id = ?", (volunteer_id))
             connection.commit()
             print("✅ Volunteer: " + volunteer_id + " has been deleted.")
-        time.sleep(2)
     else:
         print("❌ The Volunteer hasn't been deleted.")
-        time.sleep(2)
