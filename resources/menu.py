@@ -2,7 +2,7 @@ from db.repository import *
 
 def main_menu():
     while True:
-        print("\n🌟 Charity Donation Tracking 🌟")
+        print("\n🎗️ Charity Donation Tracking 🎗️")
         print("1. Add data")
         print("2. View data")
         print("3. Update data")
@@ -23,9 +23,10 @@ def main_menu():
         if action:
             action()
         else:
-            print("Invalid option.")
+            print("❌ Invalid option.")
 
 def addData():
+    print("\n🔸 ADD DATA MENU 🔸")
     print("1. Add Donor")
     print("2. Add Volunteer")
     print("3. Add Event")
@@ -48,9 +49,10 @@ def addData():
     if action:
         action()
     else:
-        print("Invalid option.")
+        print("❌ Invalid option.")
 
 def viewData():
+    print("\n🔸 VIEW DATA MENU 🔸")
     print("1. View Donors")
     print("2. View Volunteers")
     print("3. View Events")
@@ -79,9 +81,10 @@ def viewData():
     if action:
         action()
     else:
-        print("Invalid option.")
+        print("❌ Invalid option.")
 
 def updateData():
+    print("\n🔸 UPDATE DATA MENU 🔸")
     print("1. Update Donor")
     print("2. Update Volunteer")
     print("3. Update Event")
@@ -104,15 +107,16 @@ def updateData():
     if action:
         action()
     else:
-        print("Invalid option.")
+        print("❌ Invalid option.")
 
 def deleteData():
+    print("\n🔸 DELETE DATA MENU 🔸")
     print("1. Delete Donor")
     print("2. Delete Volunteer")
     print("3. Delete Event")
     print("4. Delete Donation")
     print("5. Delete Payment Method")
-    print("0. Exit")
+    print("0. Back")
     choice = input("Choose an option: ")
     print("")
 
@@ -129,4 +133,4 @@ def deleteData():
     if action:
         action()
     else:
-        print("Invalid option.")
+        print("❌ Invalid option.")
