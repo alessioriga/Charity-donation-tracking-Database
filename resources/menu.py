@@ -2,7 +2,7 @@ from db.repository import *
 
 def main_menu():
     while True:
-        print("\n🎗️ Charity Donation Tracking 🎗️")
+        print("\n🎗️  Charity Donation Tracking 🎗️")
         print("1. Add data")
         print("2. View data")
         print("3. Update data")
